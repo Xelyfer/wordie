@@ -1,0 +1,51 @@
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(20, minmax(auto, 1.5em));
+  grid-auto-rows: 3em;
+  gap: 0.25em;
+  justify-content: center;
+}
+
+.keyboard-key {
+  font-size: inherit;
+  grid-column: span 2;
+  background-color: hsl(
+    var(--hue, 200),
+    var(--saturation, 1%),
+    calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
+  );
+  border: none;
+  border-radius: 0.25em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.keyboard-key.large {
+  grid-column: span 3;
+}
+
+.keyboard-key:focus,
+.keyboard-key:hover {
+  --lightness-offset: 10%;
+}
+
+.keyboard-key.wrong {
+  --lightness: 23%;
+}
+
+.keyboard-key.wrong-location {
+  --hue: 49;
+  --saturation: 51%;
+  --lightness: 47%;
+}
+
+.keyboard-key.correct {
+  --hue: 115;
+  --saturation: 51%;
+  --lightness: 47%;
+}
