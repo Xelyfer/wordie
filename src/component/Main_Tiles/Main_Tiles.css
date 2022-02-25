@@ -21,6 +21,10 @@
   user-select: none;
 }
 
+.active {
+  background-color: red;
+}
+
 .main-tiles-tile.active {
   border-color: hsl(200, 1%, 34%);
 }
