@@ -14,7 +14,11 @@ function AlertMessage({ alert }) {
   }, []);
 
   return (
-    <div className={hide ? "alert-message hide" : "alert-message"}>{alert}</div>
+    <div
+      className={hide ? "alert-message alert-message-hide" : "alert-message"}
+    >
+      {alert}
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import "./App.css";
 import Keyboard from "./component/Keyboard/Keyboard";
 import Main_Tiles from "./component/Main_Tiles/Main_Tiles";
 import Alert from "./component/Alert/Alert";
+import EndScreen from "./component/EndScreen/EndScreen";
 
 import targetWords from "./dictionary/targetWords.json";
 import dictionary from "./dictionary/dictionary.json";
@@ -28,6 +29,21 @@ function App() {
   });
   const [currentTileRow, setCurrentTileRow] = useState([]);
   const [alerts, setAlerts] = useState([]);
+
+  function restartGame() {
+    setBoard({
+      targetWord: targetWords[Math.floor(Math.random() * targetWords.length)],
+      rowIndex: 0,
+      boardTiles: {},
+      boardRowTileStatus: {},
+      wrongCharArray: [],
+      presentCharArray: [],
+      correctCharArray: [],
+    });
+
+    setCurrentTileRow([]);
+    setGameStatus(STATUS.ON_GOING);
+  }
 
   function showAlert(message) {
     setAlerts([message, ...alerts]);
@@ -212,19 +228,12 @@ function App() {
     return () => clearTimeout(timeout);
   }, [alerts]);
 
-  useEffect(() => {
-    console.log(board.targetWord);
-  }, []);
-
-  useEffect(() => {
-    console.log(board);
-  }, [board.rowIndex]);
-
   return (
     <div className="App">
       <Alert alerts={alerts} />
       <Main_Tiles board={board} />
       <Keyboard board={board} handleKeyClicked={handleKeyClicked} />
+      <EndScreen gameStatus={gameStatus} restartGame={restartGame} />
     </div>
   );
 }
